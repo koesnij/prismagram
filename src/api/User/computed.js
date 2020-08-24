@@ -6,27 +6,31 @@ export default {
     fullName: parent => {
       return `${parent.firstName} ${parent.lastName}`;
     },
-  },
-  amIFollowing: async (parent, _, { request }) => {
-    const { user } = request;
-    const { id: parentId } = parent;
-    try {
-      const exists = await prisma.$exists.user({
-        AND: [{ id: parentId }, { followers_some: [user.id] }],
-      });
-      if (exists) {
-        return true;
-      } else {
+
+    isFollowing: (parent, _, { request }) => {
+      const { user } = request;
+      try {
+        return prisma.$exists.user({
+          AND: [
+            {
+              id: parent.id,
+            },
+            {
+              followers_some: { id: user.id },
+            },
+          ],
+        });
+        // prisma가 에러를 씹을 수도 있음. playground에서 디버깅
+      } catch (error) {
+        console.log(error);
         return false;
       }
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  },
-  itsMe: (parent, _, { request }) => {
-    const { user } = request;
-    const { id: parentId } = parent;
-    return user.id === parentId;
+    },
+
+    isSelf: (parent, _, { request }) => {
+      const { user } = request;
+      const { id: parentId } = parent;
+      return user.id === parentId;
+    },
   },
 };
