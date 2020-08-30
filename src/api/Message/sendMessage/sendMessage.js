@@ -12,17 +12,15 @@ export default {
       if (roomId === undefined) {
         // Create New Room
         if (user.id !== toId) {
-          room = await prisma
-            .createRoom({
-              participants: {
-                connect: [{ id: toId }, { id: user.id }],
-              },
-            })
-            .$fragment(ROOM_FRAGMENT);
+          room = await prisma.createRoom({
+            participants: {
+              connect: [{ id: toId }, { id: user.id }],
+            },
+          });
         }
       } else {
         // Find Existing Room
-        room = await prisma.room({ id: roomId }).$fragment(ROOM_FRAGMENT);
+        room = await prisma.room({ id: roomId });
       }
       if (!room) {
         throw Error('Room not found');
