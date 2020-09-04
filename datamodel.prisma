@@ -1,6 +1,6 @@
 type User {
   id: ID! @id
-  avatar: String
+  avatar: String @default(value: "https://www.pphfoundation.ca/wp-content/uploads/2018/05/default-avatar.png")
   username: String! @unique
   email: String! @unique
   firstName: String @default(value: "")
