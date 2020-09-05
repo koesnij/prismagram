@@ -5,6 +5,7 @@ export default {
     seeRooms: (_, __, { request, isAuthenticated }) => {
       isAuthenticated(request);
       const { user } = request;
+      console.log('seeRooms', user.email);
       return prisma.rooms({
         where: {
           participants_some: {

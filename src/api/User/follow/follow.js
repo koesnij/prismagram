@@ -6,6 +6,7 @@ export default {
       isAuthenticated(request);
       const { id } = args;
       const { user } = request;
+      console.log('follow', args, user.email);
       try {
         await prisma.updateUser({
           where: { id: user.id },

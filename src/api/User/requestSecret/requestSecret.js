@@ -4,8 +4,8 @@ import { prisma } from '../../../../generated/prisma-client';
 export default {
   Mutation: {
     requestSecret: async (_, args, { request }) => {
-      console.log(request);
       const { email } = args;
+      console.log('requestSecret', args, user.email);
       const loginSecret = generateSecret();
       try {
         await sendSecretMail(email, loginSecret);

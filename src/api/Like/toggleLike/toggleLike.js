@@ -21,7 +21,7 @@ export default {
           },
         ],
       };
-      console.log(user.username, postId);
+      console.log('toggleLike', args, user.email);
       try {
         const existingLike = await prisma.$exists.like(filterOptions);
         if (existingLike) {

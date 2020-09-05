@@ -5,6 +5,7 @@ export default {
     newMessage: {
       subscribe: (_, args) => {
         const { roomId } = args;
+        console.log('newMessage'.args);
         return prisma.$subscribe
           .message({
             AND: [

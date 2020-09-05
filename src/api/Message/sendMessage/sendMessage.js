@@ -7,6 +7,7 @@ export default {
       const { user } = request;
       const { roomId, message, toId } = args;
       let room;
+      console.log('sendMessage', args, user.email);
 
       if (roomId === undefined) {
         // Create New Room

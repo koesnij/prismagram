@@ -9,6 +9,7 @@ export default {
       isAuthenticated(request);
       const { user } = request;
       const { id, caption, location, action } = args;
+      console.log('editPost', args, user.email);
       const post = await prisma.$exists.post({ id, user: { id: user.id } });
       if (post) {
         if (action === EDIT) {

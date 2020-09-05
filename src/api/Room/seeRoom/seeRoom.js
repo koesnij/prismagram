@@ -6,6 +6,7 @@ export default {
       isAuthenticated(request);
       const { id } = args;
       const { user } = request;
+      console.log('seeRoom', args, user.email);
       const canSee = await prisma.$exists.room({
         participants_some: { id: user.id },
       });

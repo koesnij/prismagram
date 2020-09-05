@@ -6,6 +6,7 @@ export default {
       isAuthenticated(request);
       const { username, email, firstName, lastName, bio, avatar } = args;
       const { user } = request;
+      console.log('editUser', args, user.email);
       // await keyword를 붙일 필요가 없음!
       // 마지막 문장이기 때문에 서버는 이 promise가
       // resolve되어 브라우저에게 결과를 전달하길 기다려 줌.
