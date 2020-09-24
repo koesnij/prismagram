@@ -11,6 +11,7 @@ const s3 = new aws.S3({
 const upload = multer({
   storage: multerS3({
     s3,
+    acl: 'public-read',
     bucket: 'prismagram-koesnij',
     metadata: function(req, file, cb) {
       cb(null, { fieldName: file.fieldname });
